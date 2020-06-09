@@ -1,0 +1,1 @@
+gcc -Wall main.c ports.c input.c output.c hardware.c -o tp12
