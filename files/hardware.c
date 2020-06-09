@@ -19,7 +19,7 @@ int value;
 
 for (unsigned char i=0; i<8; i++){
 
-	if((handle_direction = PIN_SDIRECT(i)) == NULL){		//si ocurrio algun error en la direccion del pin devuelvo un 1 
+	if((handle_direction = PIN_SDIRECT(led[i]) == NULL){		//si ocurrio algun error en la direccion del pin devuelvo un 1 
 		printf("cannot open DIRECTION File\n");
 		exit(1);
 	}
@@ -36,7 +36,7 @@ for (unsigned char i=0; i<8; i++){
 
 	fclose(handle_direction);
 
-	if ((handle = SPIN_VALUE(i))) == NULL){
+	if ((handle = SPIN_VALUE(led[i]))) == NULL){
 		printf("Cannot open device. Try again later.\n");
 		exit(1);
 	}
