@@ -8,15 +8,13 @@ Creado por el grupo 5
 #include <stdlib.h>
 #include "hardware.h"
 
-
-
-void hard (void){
-
 FILE * handle_direction = NULL;
 FILE * handle = NULL;
-char led[8]={17,4,18,23,24,25,22,27};
+int led[8]={17,4,18,23,24,25,22,27};
 int Written;
 int value;
+
+void hard (void){
 
 for (unsigned char i=0; i<8; i++){
 

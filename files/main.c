@@ -19,7 +19,7 @@ Creado por el grupo 5
 port16_t p;					//Estructura de puertos. Por favor vea "ports.h"
 int pulsador=0;
 static int Blink(void);			//parpadeo
-
+char leds[8]={17,4,18,23,24,25,22,27};
 /*thread*/
 void * thread1()
 { int fin=1;
@@ -41,7 +41,7 @@ void * thread1()
 int main (void){							//Este programa opera sobre el puerto 
 		
 	FILE * exportacion;
-	char led[8]={17,4,18,23,24,25,22,27};
+	
 	int Write;				
 	if( (exportacion=fopen("/sys/class/gpio/export","w") )==NULL){
 	printf("no se puedo exportar\n");
@@ -50,7 +50,7 @@ int main (void){							//Este programa opera sobre el puerto
 	
 	for (unsigned int i=0; i<7;i++){
 	
-	Write= PIN_EXPORT(led[i]);
+	Write= PIN_EXPORT(leds[i]);
 
 	if(Write == -1){
 	printf("no se pudo exporta el pin\n");
