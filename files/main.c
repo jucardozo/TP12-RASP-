@@ -40,29 +40,7 @@ void * thread1()
 
 int main (void){							//Este programa opera sobre el puerto 
 		
-	FILE * exportacion;
-	
-	int Write;				
-	if( (exportacion=fopen("/sys/class/gpio/export","w") )==NULL){
-	printf("no se puedo exportar\n");
-	exit(1);
-	}
-	
-	for (unsigned int i=0; i<7;i++){
-	
-	Write= PIN_EXPORT(leds[i]);
 
-	if(Write == -1){
-	printf("no se pudo exporta el pin\n");
-	exit(1);
-	}
-	
-	else 
-		printf("exportado correctamente\n");	
-	fflush(exportacion);
-	}
-
-	fclose(exportacion);
 
 	BOOLEAN end = FALSE;					//Variable para terminar el programa
 	char in;								//Variable para dar entrada a los datos del usuario
@@ -93,6 +71,7 @@ int main (void){							//Este programa opera sobre el puerto
 				break;
 			default:						//Caso de los numeros de 0 a 7
 				bitSet (&p, 'A', (((int)in) - ASCII_ZERO));	//Seteo el numero de bit pedido
+				hard();
 				break;
 		}
 		if (end != TRUE){		//Si el usuario no decidio salir
