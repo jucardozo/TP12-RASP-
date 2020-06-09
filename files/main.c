@@ -9,6 +9,7 @@ Creado por el grupo 5
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
+#include "hardware.h"
 #include "definitions.h"			//Definiciones generales
 #include "ports.h"				//Libreria de puertos
 #include "input.h"				//Entrada de datos por teclado
@@ -38,6 +39,14 @@ void * thread1()
 /*FUNCION PRINCIPAL*/
 
 int main (void){							//Este programa opera sobre el puerto 
+		
+	FILE * exportacion;
+	char led[8]={17;4;18;23;24;25;22;27}				
+	if( (exportacion=fopen("/sys/class/gpio/export","w") )==NULL){
+	printf("no se puedo exportar\n");
+	exit(1);
+	}
+
 	BOOLEAN end = FALSE;					//Variable para terminar el programa
 	char in;								//Variable para dar entrada a los datos del usuario
 	bienvenida();							//Doy la bienvenida al usuario
@@ -47,12 +56,15 @@ int main (void){							//Este programa opera sobre el puerto
 		switch (in){						//Proceso que es lo que se quiere hacer
 			case 't': case 'T':				//T o t conmutan todo el puerto
 				maskToggle(&p, 'A', 0xFF);		//Como siempre se le pasan datos validos y verificados a las funciones,
+				hard();
 				break;						//se ignora el valor que puedan devolver, ya que nunca seria el de un error
 			case 'c': case 'C':				//C o c apagan todo el puerto
 				maskOff(&p, 'A', 0xFF);
+				hard();
 				break;
 			case 's': case 'S':				//C o c apagan todo el puerto
 				maskOn(&p, 'A', 0xFF);
+				hard();
 				break;
 			case'B': case'b':
 				p.portD.W=Blink();
@@ -80,11 +92,13 @@ static int Blink(){         //devuelve la configuracioin inicial de los bits
 		sleep(2);
 	        maskToggle(&p,'D', p.portD.W);               //apaga los bit que estaban 
 	        print_portA(&p);
+		hard();
 	        printf("me duermo\n");
 	        sleep(2);
 	        printf("me despierto\n");
 	        maskToggle(&p,'D',port_original);             //prendo de nuevo los bits
 	        print_portA(&p);
+		hard();
 		sleep(2);
     }
     return port_original;                       //el thread termino.
