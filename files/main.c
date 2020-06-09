@@ -41,11 +41,28 @@ void * thread1()
 int main (void){							//Este programa opera sobre el puerto 
 		
 	FILE * exportacion;
-	char led[8]={17;4;18;23;24;25;22;27}				
+	char led[8]={17;4;18;23;24;25;22;27};
+	int Write;				
 	if( (exportacion=fopen("/sys/class/gpio/export","w") )==NULL){
 	printf("no se puedo exportar\n");
 	exit(1);
 	}
+	
+	for (unsigned int i=0; i<7;i++){
+	
+	Write= PIN_EXPORT(led[i]);
+
+	if(Writen == -1){
+	printf("no se pudo exporta el pin\n");
+	exti(1);
+	}
+	
+	else 
+		printf("exportado correctamente\n");	
+	fflush(exportacion);
+	}
+
+	fclose(exportacion);
 
 	BOOLEAN end = FALSE;					//Variable para terminar el programa
 	char in;								//Variable para dar entrada a los datos del usuario

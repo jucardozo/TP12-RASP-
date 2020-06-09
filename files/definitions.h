@@ -17,7 +17,7 @@ Creado por el grupo 5 en mayo de 2020
 
 /*MACROS DE CODIGO*/
 #define LINEA_VACIA() printf("\n")
-
+#define PIN_EXPORT(x) fputc('x',exportacion)
 /*MACROS DE CONSTANTES*/
 #define ASCII_ZERO 48
 

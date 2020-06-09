@@ -34,7 +34,7 @@ for (unsigned char i=0; i<8; i++){
 		printf("DIRECTION File for PIN opened succesfully\n");
 	}
 
-	fclose(handle_direction);
+	fflush(handle_direction);
 
 	if ((handle = SPIN_VALUE(led[i]))) == NULL){
 		printf("Cannot open device. Try again later.\n");
@@ -58,8 +58,9 @@ for (unsigned char i=0; i<8; i++){
 		printf("Write successfully done.\n",);
 	
 	
-	fclose(handle);
+	fflush(handle);
 	
 }
-
+	fclose(handle_direction);
+	fclose(handle);
 }
