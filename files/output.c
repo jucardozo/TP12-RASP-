@@ -16,7 +16,9 @@ void bienvenida (void){						//Esta funcion da la bienvenida al usuario. No reci
 	printf ("	* \"T\" o \"t\" para conmutar el estado de todos los LEDs.\n");
 	printf ("	* \"C\" o \"c\" para apagar todos los LEDs.\n");
 	printf ("	* \"S\" o \"s\" para encender todos los LEDs.\n");
+	printf ("	* \"B\" o \"b\" para parpadear los LEDs prendidos.\n");
 	printf ("	* \"Q\" o \"q\" para salir del programa.\n");
+
 	LINEA_VACIA();
 }
 

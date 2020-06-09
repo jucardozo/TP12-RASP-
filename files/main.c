@@ -29,6 +29,7 @@ void * thread1()
             pulsador=0;                 //se baja el flag del pulsador para que el while del Blink pare
              fin=0;                     //se termina el while del thread
         }
+	keyB=getchar();		//se saca el buffer basura
     }
     while(1){
     }
@@ -76,15 +77,15 @@ static int Blink(){         //devuelve la configuracioin inicial de los bits
 	pthread_create(&tid1,NULL,thread1,NULL);
 	pulsador=1;                         //si no se apreto b, entonces el pulsador sigue activo
 	while(pulsador){                        //por lo tanto queda atrapado en el while
-		sleep(3);
+		sleep(2);
 	        maskToggle(&p,'D', p.portD.W);               //apaga los bit que estaban 
 	        print_portA(&p);
 	        printf("me duermo\n");
-	        sleep(3);
+	        sleep(2);
 	        printf("me despierto\n");
 	        maskToggle(&p,'D',port_original);             //prendo de nuevo los bits
 	        print_portA(&p);
-		sleep(3);
+		sleep(2);
     }
     return port_original;                       //el thread termino.
 }
